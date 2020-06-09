@@ -1,0 +1,2 @@
+class Tablero(object): 
+  pass
