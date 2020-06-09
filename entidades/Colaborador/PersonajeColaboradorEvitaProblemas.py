@@ -10,4 +10,4 @@ class PersonajeColaboradorEvitaProblemas(Evita_problemas, PersonajeColaborador):
         if(self.estamos_rodeados()):
             return self.BuscarCelda_ConMenos_ataque()
 
-        return self.buscar_celdan_sinEnemigos()
+        return self.buscar_celda_sinEnemigos()
