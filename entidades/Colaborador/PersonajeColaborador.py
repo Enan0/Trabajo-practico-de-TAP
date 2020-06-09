@@ -1,6 +1,4 @@
 from ..Personaje import Personaje
-# pylint: disable=invalid-name
-# 
 
 
 class PersonajeColaborador(Personaje):

@@ -4,10 +4,10 @@ from ..Personaje import Personaje
 class PersonajePrecavido(Personaje):
     # CAMBIAR EL NOMBRE DE ESTE METODO EN UN FUTURO, ES MUY MALO xd
     def hay_enemigo_mas_energico(self):
-            """
+        """
                 Busca enemigos en las celdas vecinas donde los enemigos tengan mas energia que nosotros
                 si hay un enemigo mas energico devuelve True
-            """
+        """
         # Guarda las celdas vecinas
         celdas_vecinas = self.celda.dame_celdas_vecinas()
         for celda in celdas_vecinas:

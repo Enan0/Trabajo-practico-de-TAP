@@ -1,5 +1,6 @@
 class Celda(object):
-
+  def __str__(self):
+    return str(self.coordenadas)
   def __init__(self,coordenadas):
     self.coordenadas = coordenadas
     self.celdas_vecinas = []
