@@ -1,9 +1,13 @@
 from ..Personaje import Personaje
+# pylint: disable=invalid-name
+# 
 
 
 class PersonajeColaborador(Personaje):
     def buscar_aliados(self):
-        
+        """
+            El colaborador siempre se fija si hay aliados en las celdas vecinas
+        """
         cantidad_compañeros = 0
         # Guarda las celdas vecinas
         celdas_vecinas = self.celda.dame_celdas_vecinas()
