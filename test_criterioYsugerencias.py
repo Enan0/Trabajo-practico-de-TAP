@@ -67,7 +67,7 @@ pers_pancho_6 = PersonajePancho(haskell, celda31)
 # (Por este caso especial, accedemos directo a los atributos del personaje. No hagan esto en sus casas)
 pers_pancho_6.energia = 1000    
 pers_pancho_6.experiencia = 100 
-print(pers_colaborador_evitar_problemas.celda.dame_coordenadas())
+
 assert pers_colaborador_evitar_problemas.que_hago() is celda20
 
 for celda in tablero.dame_celdas():

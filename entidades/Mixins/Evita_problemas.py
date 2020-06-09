@@ -8,31 +8,27 @@ class Evita_problemas(object):
         # 4 Sumar la cantidad de daño de la celda
         # 5 Comparar con otra celda
         celdas_vecinas = self.celda.dame_celdas_vecinas()
-        tmp_potencia_de_ataque = 0
-
-        #Recorremos las celdas vecinas
         for celda in celdas_vecinas:
-            
-            # Obtenemos los personajes de la 'celda'
-            personajes_de_la_celda = celda.dame_personajes()
-            total_potencia_de_celda = 0
-            if(personajes_de_la_celda == []):
-                # Si esta vacio saltamos la iteracion
+            tmp = 100
+            potencia_total = 0
+            personajes = celda.dame_personajes()
+
+            if(personajes == []):
                 continue
-            #Recorremos los personajes de la celda
-            for personaje in personajes_de_la_celda:
-                
-                # Comprueba que no son aliados
+
+            for personaje in personajes:
+
                 if(personaje.dame_jugador() == self.dame_jugador()):
                     continue
 
-                # Suma la potencia_de_ataque
-                total_potencia_de_celda += personaje.potencia_de_ataque()
+                potencia_total += personaje.potencia_de_ataque()
 
-            if(total_potencia_de_celda > tmp_potencia_de_ataque):
-                tmp_potencia_de_ataque = total_potencia_de_celda
-            sugerencia_celda = celda
-        return sugerencia_celda
+                if(potencia_total <= tmp):
+                    tmp = potencia_total
+                    celda_sugerida = celda
+                    del potencia_total
+
+        return celda_sugerida
 
     def buscar_celdan_sinEnemigos(self):
 
@@ -49,30 +45,23 @@ class Evita_problemas(object):
         return celda_sugerida
 
     def estamos_rodeados(self):
-        # Guarda todas las celdas vecinas
         celdas_vecinas = self.celda.dame_celdas_vecinas()
-        # Recorre las celdas
+        lista_celdas_con_enemigos = []
         for celda in celdas_vecinas:
-            personajes_en_celda = celda.dame_personajes()
-            celdas_ocupadas = []
 
-            if(personajes_en_celda == []):
-                # En caso de que una celda este vacia, automaticamente no estamos rodeados
+            personajes = celda.dame_personajes()
+
+            if(personajes == []):
                 return False
 
-            '''
-                Recorremos la lista de personajes en celda y si hay un personaje enemigo
-                agrega la celda en la lista de celdas_ocupadas
-            '''
-            for personaje in personajes_en_celda:
-                # Si el personaje es aliado si iguiente iteracion
-                if(personaje.dame_jugador() == self.dame_jugador()):
-                    continue
+            for personaje in personajes:
 
-                celdas_ocupadas.append(celda)
-                break
+                if(personaje.dame_jugador() != self.dame_jugador()):
+                    lista_celdas_con_enemigos.append(celda)
 
-        # Si las listas son iguales significa que las celdas vecinas estan todas ocupadas
-        if(celdas_ocupadas == celdas_vecinas):
-            return True
-        return False
+                continue
+        # Si la lista de celdas con enemigos sea diferente a celdas vecinas devuelve False
+        if(lista_celdas_con_enemigos != celdas_vecinas):
+            return False
+
+        return True

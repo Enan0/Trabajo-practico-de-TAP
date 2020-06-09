@@ -4,7 +4,6 @@ from ..Celda import Celda
 """Edits"""
 
 class TableroCuadrado(Tablero):
-  
   def __init__(self,dimension): # considerando la dimension indicada, genero
                                 # todas las celdas e identifico sus vecinas
     self.celdas = []
